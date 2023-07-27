@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Profile</h1>
+      <form id="profileForm" onsubmit="return saveProfile()">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+        <br /><br />
+        <label for="grade">Grade:</label>
+        <input type="number" id="grade" name="grade" required />
+        <br /><br />
+        <input type="submit" value="Save Profile" />
+      </form>
+      <p><a href="loginsuccess.html">Back to Log In Success</a></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
