@@ -17,9 +17,9 @@ This is my Software Design & Development Assessment Task. Included in this uploa
 You can pull (OR) Download the files like usual - the average github experience BUT you're going to need some things first. 
 
 Visual Studio Code: (This is the most reliable development tool, IMO (Don't attack me lol)
-Windows: https://code.visualstudio.com/docs/?dv=win
-Mac: https://code.visualstudio.com/docs/?dv=osx
-(For the weird people) Linux (deb): https://code.visualstudio.com/docs/?dv=linux64_deb
+## Windows: https://code.visualstudio.com/docs/?dv=win
+## Mac: https://code.visualstudio.com/docs/?dv=osx
+## (For the weird people) Linux (deb): https://code.visualstudio.com/docs/?dv=linux64_deb
 
 Plugins for visual studio:
 Live Server: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
