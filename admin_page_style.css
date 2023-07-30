@@ -1,0 +1,331 @@
+/* Add your CSS styles here for the admin_page.html */
+.container {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 100px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-picture-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Add the following to maintain aspect ratio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #profilePicture {
+    /* Change the following to cover the entire container without stretching */
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #profilePictureInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333333;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 15px;
+  }
+  
+  .sport-options-list {
+    list-style: none;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+  }
+  
+  .sport-options-list li {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sport-options-list li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .time-date {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: #ffffff; /* Change the color as desired */
+  }
+  
+  /* Add the styles for the age-bracket-section */
+  .age-bracket-section {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .age-bracket-section label {
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .age-bracket-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  /* Add the styles for the selectedUserSection */
+  #selectedUserSection {
+    display: none;
+    margin-top: 40px;
+    text-align: left;
+  }
+  
+  #selectedUserTitle {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Add the styles for the selected sports list */
+  .selected-sports-list {
+    margin-top: 20px;
+  }
+  
+  .home-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    flex-direction: column;
+  }
+  
+  .home-hero {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    padding-top: var(--dl-space-space-oneandhalfunits);
+    padding-left: var(--dl-space-space-sevenunits);
+    padding-right: var(--dl-space-space-sevenunits);
+    flex-direction: column;
+    background-color: #5228F5;
+  }
+  
+  .home-menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .home-features {
+    width: 100%;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    padding-top: 400px;
+    padding-left: var(--dl-space-space-sevenunits);
+    padding-right: var(--dl-space-space-sevenunits);
+    flex-direction: column;
+    background-color: #EFF0F2;
+  }
+  
+  .home-footer {
+    width: 100%;
+    height: 287px;
+    display: flex;
+    align-items: center;
+    padding-top: var(--dl-space-space-sevenunits);
+    padding-left: var(--dl-space-space-sevenunits);
+    padding-right: var(--dl-space-space-sevenunits);
+    flex-direction: column;
+    padding-bottom: var(--dl-space-space-sevenunits);
+    background-color: #000000;
+  }
+  
+  .home-hero h1 {
+    font-size: 72px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    line-height: 80px;
+    color: #ffffff;
+  }
+  
+  .home-hero p {
+    font-size: 20px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 600;
+    color: #eee9fe;
+    max-width: 600px;
+    margin-top: 16px;
+    line-height: 30px;
+  }
+  
+  .home-container .home-menu h1,
+  .home-container .home-features h1,
+  .home-container .home-footer h1 {
+    font-size: 56px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 700;
+    line-height: 72px;
+  }
+  
+  .home-container .home-menu p,
+  .home-container .home-features p,
+  .home-container .home-footer p {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+  .home-container .home-menu a,
+  .home-container .home-features a,
+  .home-container .home-footer a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .home-container .home-menu a:hover,
+  .home-container .home-features a:hover,
+  .home-container .home-footer a:hover {
+    color: #5228F5;
+  }
+  
+  /* Add any additional styles specific to your admin page here */
+  
+  body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+
+  body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+  

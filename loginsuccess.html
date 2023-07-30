@@ -12,7 +12,6 @@
   <body>
     <div class="container">
       <div class="header">
-        <!-- Add the following HTML snippet inside the div with id="container" -->
         <div class="age-bracket-section" id="ageBracketSection">
           <label for="ageBracket">Age Bracket:</label>
         </div>
@@ -24,7 +23,6 @@
               alt="Profile Picture"
               id="profilePicture"
             />
-            <!-- Add an input element to allow profile picture selection -->
             <input
               type="file"
               accept="image/*"
@@ -34,19 +32,24 @@
           </div>
           <h1>ㅤWelcome, <span id="username"></span>!</h1>
         </div>
-        <!-- Update the button to remove the inline onclick event -->
-        <!-- <button class="profile-picture-button" id="changePictureButton">
-        Change Picture
-      </button> -->
       </div>
       <p>You have successfully logged in.</p>
-      <p>Select a sport event:</p>
-      <ul id="sportList">
-        <li onclick="selectEvent('Football')" id="football">Football</li>
-        <li onclick="selectEvent('Basketball')" id="basketball">Basketball</li>
-        <li onclick="selectEvent('Volleyball')" id="volleyball">Volleyball</li>
-        <li onclick="selectEvent('Tennis')" id="tennis">Tennis</li>
-      </ul>
+      <div id="sportListSection">
+        <p>Select a sport event:</p>
+        <ul id="sportList">
+          <li onclick="selectEvent('Football')" id="football">Sprint</li>
+          <li onclick="selectEvent('Basketball')" id="basketball">Hurdles</li>
+          <li onclick="selectEvent('Volleyball')" id="volleyball">Long Jump</li>
+          <li onclick="selectEvent('Tennis')" id="tennis">High Jump</li>
+        </ul>
+      </div>
+      <div id="sportOptionsContainer">
+        <label for="sportOptionsSelect">Select an option:</label>
+        <select
+          id="sportOptionsSelect"
+          onchange="displaySelectedSportOptions()"
+        ></select>
+      </div>
       <p><a href="logjn.html">Log Out</a></p>
       <div id="adminSection">
         <h2>Selected Sports (Admin Only)</h2>
@@ -54,6 +57,9 @@
           <!-- List items will be dynamically added by JavaScript -->
         </ul>
         <div class="time-date" id="timeDate"></div>
+      </div>
+      <div id="sportOptionsContainer">
+        <!-- Sport options will be dynamically added by JavaScript -->
       </div>
     </div>
     <script src="script.js"></script>

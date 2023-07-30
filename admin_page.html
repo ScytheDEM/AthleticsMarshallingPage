@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="admin_page_style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="admin_page_style.css" />
+  </head>
+  <body>
+    <body>
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </body>
+    <div class="container">
+      <div class="header">
+        <div class="age-bracket-section" id="ageBracketSection">
+          <label for="ageBracket">Age Bracket:</label>
+          <select id="ageBracket" onchange="showUserSection()">
+            <option value="default" selected disabled>Select a user:</option>
+            <option value="James">James</option>
+            <option value="Kevin">Kevin</option>
+            <option value="Dale">Dale</option>
+            <option value="Mark">Mark</option>
+            <option value="Willow">Willow</option>
+            <option value="Window">Window</option>
+            <option value="Peter">Peter</option>
+            <option value="Dominic">Dominic</option>
+            <option value="William">William</option>
+          </select>
+        </div>
+
+        <div class="profile">
+          <div class="profile-picture-container">
+            <img
+              src="stock_image/default_profile_picture.png"
+              alt="Profile Picture"
+              id="profilePicture"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              id="profilePictureInput"
+              onchange="displaySelectedProfilePicture(event)"
+            />
+          </div>
+          <h1>Admin Page</h1>
+        </div>
+      </div>
+
+      <div id="userSection"></div>
+
+      <p><a href="logjn.html">Log Out</a></p>
+
+      <div class="time-date" id="timeDate"></div>
+    </div>
+    <script src="admin_script.js"></script>
+  </body>
+</html>

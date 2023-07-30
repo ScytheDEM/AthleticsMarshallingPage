@@ -16,7 +16,8 @@
   <body>
     <div class="container">
       <h1>Carnival Registration</h1>
-      <form id="loginForm" onsubmit="return validateForm()">
+      <!-- Add the onsubmit attribute to call validateForm() function -->
+      <form id="loginForm" onsubmit="return validateForm(event)">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
         <br /><br />
