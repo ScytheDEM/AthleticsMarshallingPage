@@ -24,18 +24,18 @@ const users = [
     return sportsOptions[sportType][randomIndex];
   }
   
-  function displaySelectedUserSports(selectedUser) {
+  function displaySelectedUserSports(selectedUser) { //
     const userSection = document.getElementById('userSection');
     if (userSection) {
       userSection.innerHTML = ''; // Clear the existing content
   
       // Create the subsection for the selected user
-      const userSubSection = document.createElement('div');
-      userSubSection.classList.add('user-subsection');
+      const userSubSection = document.createElement('div'); 
+      userSubSection.classList.add('user-subsection'); // Add a class to the subsection
       userSubSection.innerHTML = `
-        <h2>${selectedUser}'s Sport</h2>
+        <h2>${selectedUser}'s Sport</h2> // Add the user's name to the subsection
         <ul class="sports-list">
-          <li>${users.find((u) => u.username === selectedUser).selectedSport}</li>
+          <li>${users.find((u) => u.username === selectedUser).selectedSport}</li> // Add the user's selected sport to the subsection
         </ul>
       `;
   
@@ -44,10 +44,10 @@ const users = [
   }
   
   function showUserSection() {
-    const ageBracketSelect = document.getElementById('ageBracket');
+    const ageBracketSelect = document.getElementById('ageBracket'); // Get the age bracket select element
     const selectedUser = ageBracketSelect.value;
   
-    const userSection = document.getElementById('userSection');
+    const userSection = document.getElementById('userSection'); // Get the user section element
     if (userSection) {
       if (selectedUser !== 'default') {
         userSection.style.display = 'block';
@@ -58,7 +58,7 @@ const users = [
     }
   }
   
-  window.addEventListener('load', () => {
+  window.addEventListener('load', () => { // Add an event listener to the window object
     const ageBracketSelect = document.getElementById('ageBracket');
     if (ageBracketSelect) {
       ageBracketSelect.addEventListener('change', showUserSection);

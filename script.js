@@ -1,5 +1,7 @@
-"use strict";
+// i made comments for pratically everything to make it easier to follow along lol
 
+"use strict";
+// Array of user data (the entries for the username)
 const users = [
  { username: 'James', password: '123', selectedSport: null },
   { username: 'Kevin', password: '123', selectedSport: null },
@@ -7,41 +9,34 @@ const users = [
   { username: 'Mark', password: '123', selectedSport: null },
   { username: 'admin', password: 'admin', selectedSport: null },
   { username: 'Willow', password: '123', selectedSport: null },
-  { username: 'Window', password: '123', selectedSport: null },
+  { username: 'Charli', password: '123', selectedSport: null },
   { username: 'Peter', password: '123', selectedSport: null },
   { username: 'Dominic', password: '123', selectedSport: null },
   { username: 'William', password: '123', selectedSport: null }
 ];
 
-const sportsOptions = {
-  Football: ['Option 1', 'Option 2', 'Option 3'],
-  Basketball: ['Option A', 'Option B', 'Option C', 'Option D', 'Option E'], // Add two extra options for Basketball
-  Volleyball: ['Option X', 'Option Y', 'Option Z', 'Option M', 'Option N'], // Add two extra options for Volleyball
-  Tennis: ['Option I', 'Option II', 'Option III', 'Option P', 'Option Q'], // Add two extra options for Tennis
-};
-
-
-// Add this function to display the sport options
+// Function to display the available options for a selected sport
 function displaySportOptions(sport) {
-  const loggedInUsername = getLoggedInUsername().toLowerCase();
-  const sportOptionsContainer = document.getElementById('sportOptionsContainer');
+  const loggedInUsername = getLoggedInUsername().toLowerCase(); // Get the logged-in username
+  const sportOptionsContainer = document.getElementById('sportOptionsContainer'); // Get the sport options container
 
-  if (loggedInUsername === 'admin' && sportOptionsContainer) {
-    // If the logged-in user is an admin, clear the sport options container
-    sportOptionsContainer.innerHTML = '';
-    return;
-  }
 
-  if (sportOptionsContainer) {
-    const optionsList = document.createElement('ul');
-    sportsOptions[sport].forEach((option) => {
+// If the logged-in user is an admin, clear the sport options container
+if (loggedInUsername === 'admin' && sportOptionsContainer) {
+  sportOptionsContainer.innerHTML = '';
+  return;
+}
+
+  if (sportOptionsContainer) { // If the sport options container exists
+    const optionsList = document.createElement('ul'); // Create a list to hold the options
+    sportsOptions[sport].forEach((option) => { // Loop through the options for the selected sport
       const listItem = document.createElement('li');
       listItem.textContent = option;
       optionsList.appendChild(listItem);
     });
 
-    // Replace existing options with the new ones
-    const existingOptionsList = sportOptionsContainer.querySelector('ul');
+    // To Replace existing options with the new ones
+    const existingOptionsList = sportOptionsContainer.querySelector('ul'); // Get the existing options list
     if (existingOptionsList) {
       sportOptionsContainer.replaceChild(optionsList, existingOptionsList);
     } else {
@@ -50,34 +45,40 @@ function displaySportOptions(sport) {
   }
 }
 
-function populateSportOptionsDropdown(sport) {
-  const sportOptionsSelect = document.getElementById('sportOptionsSelect');
-  if (sportOptionsSelect) {
-    sportOptionsSelect.innerHTML = '';
+// Function to display the selected option for the logged-in user
+function displaySelectedSportOptions() {
+  const sportOptionsSelect = document.getElementById('sportOptionsSelect'); // Get the sport options select
+  const selectedSport = sportOptionsSelect.value;
+  displaySportOptions(selectedSport); // Display the options for the selected sport
+}
 
+const sportsOptions = {
+  Sprint: ['100 Meter Sprint', '200 Meter Sprint', '400 Meter Sprint'],
+  Hurdles: ['110 Meters ', '300 Meters', '400 Meters'],
+};
+
+// Function to populate the dropdown with options for the selected sport
+function populateSportOptionsDropdown(sport) { // sport is the selected sport
+  const sportOptionsSelect = document.getElementById('sportOptionsSelect'); // Get the sport options select
+  if (sportOptionsSelect) { // If the sport options select exists
+    sportOptionsSelect.innerHTML = '';
     sportsOptions[sport].forEach((option) => {
-      const optionItem = document.createElement('option');
-      optionItem.textContent = option;
-      sportOptionsSelect.appendChild(optionItem);
+      const optionItem = document.createElement('option'); // Create an option
+      optionItem.textContent = option; // Set the text content of the option to the option value
+      sportOptionsSelect.appendChild(optionItem); // Add the option to the select
     });
   }
 }
 
-function displaySelectedSportOptions() {
-  const sportOptionsSelect = document.getElementById('sportOptionsSelect');
-  const selectedSport = sportOptionsSelect.value;
-  displaySportOptions(selectedSport);
-}
+window.addEventListener('load', () => { // When the page loads
+  initializePage(); // Initialize the page
+  initializeProfilePage(); // Initialize the profile page
+  updateTimeDate(); // Update the time and date
 
-window.addEventListener('load', () => {
-  initializePage();
-  initializeProfilePage();
-  updateTimeDate();
-
-  const sportListItems = document.querySelectorAll('#sportList li');
-  sportListItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      selectEvent(item.textContent);
+  const sportListItems = document.querySelectorAll('#sportList li'); // Get the list items in the sport list
+  sportListItems.forEach((item) => { // Loop through the list items
+    item.addEventListener('click', () => { // Add a click event listener to each list item
+      selectEvent(item.textContent); // Call the selectEvent function, passing in the text content of the list item
     });
   });
 
@@ -86,26 +87,28 @@ window.addEventListener('load', () => {
   populateSportOptionsDropdown(firstSport);
 });
 
-function validateForm(event) {
+function validateForm(event) { // Function to validate the login form
   event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+  const username = document.getElementById('username').value; // Get the username from the form
+  const password = document.getElementById('password').value; // Get the password from the form
 
-  const user = users.find((user) => user.username === username && user.password === password);
+  const user = users.find((user) => user.username === username && user.password === password); // Find the user with the matching username and password
 
   if (user) {
-    localStorage.setItem('selectedSport_' + username, user.selectedSport);
-    localStorage.setItem('username', username);
+    localStorage.setItem('selectedSport_' + username, user.selectedSport); // Store the selected sport for the user
+    localStorage.setItem('username', username);// Store the username in local storage
     window.location.href = 'loginsuccess.html';
   } else {
     alert('Invalid username or password. Please try again.');
   }
 }
 
+// Function to get the username of the logged-in user from local storage
 function getLoggedInUsername() {
   return localStorage.getItem('username');
 }
 
+// Function to display the username of the logged-in user
 function displayLoggedInUsername() {
   const username = getLoggedInUsername();
   const usernameElement = document.getElementById('username');
@@ -114,38 +117,57 @@ function displayLoggedInUsername() {
   }
 }
 
-function displaySelectedSport() { // idk what the fuck this even does but lmao it works so idc
+// Function to display the selected sport as the active event
+function displaySelectedSport() {
   const selectedSport = getSelectedSport();
   const sportListItems = document.querySelectorAll('#sportList li');
   sportListItems.forEach((item) => {
     item.classList.toggle('selected-event', item.textContent === selectedSport);
   });
+
+  const loggedInUsername = getLoggedInUsername().toLowerCase();
+  const isAdmin = loggedInUsername === 'admin';
+
+  if (!isAdmin) {
+    populateSportOptionsDropdown(selectedSport); // Update the dropdown options for non-admin users
+  }
 }
 
+// Function to get the selected sport for the logged-in user from local storage
 function getSelectedSport() {
   const username = getLoggedInUsername();
   return localStorage.getItem('selectedSport_' + username);
 }
 
-function setSelectedSport(sport) {
+// Function to set the selected sport and option for the logged-in user in local storage
+function setSelectedSport(sport, option) {
   const username = getLoggedInUsername();
   localStorage.setItem('selectedSport_' + username, sport);
+  localStorage.setItem('selectedOption_' + username, option); // Store the selected option for the user
 }
 
+// Function to handle the event when a sport is selected by the user
 function selectEvent(sport) {
   setSelectedSport(sport);
   displaySelectedSport();
 
-  if (getLoggedInUsername().toLowerCase() === 'admin') {
-    updateAdminSelectedSportsList();
+  if (getLoggedInUsername() !== 'admin') {
+    populateSportOptionsDropdown(sport); // Update the dropdown options
+
+    // Save the selected option for the logged-in user
+    const sportOptionsSelect = document.getElementById('sportOptionsSelect');
+    if (sportOptionsSelect) {
+      const selectedOption = sportOptionsSelect.value;
+      setSelectedOption(getLoggedInUsername(), selectedOption);
+    }
   }
 }
 
+// Function to populate the list of selected sports for non-admin users
 function populateSelectedSportsList() {
   const selectedSportsList = document.getElementById('selectedSportsList');
   if (selectedSportsList) {
     selectedSportsList.innerHTML = '';
-
     users.forEach((user) => {
       const selectedSport = localStorage.getItem('selectedSport_' + user.username);
       if (selectedSport) {
@@ -173,29 +195,29 @@ function populateSelectedSportsList() {
   }
 }
 
+// Function to set the selected option for a specific user in local storage
+function setSelectedOption(username, option) {
+  localStorage.setItem('selectedOption_' + username, option);
+}
+
+// Function to update the list of selected sports in the admin section
 function updateAdminSelectedSportsList() {
   const selectedSportsList = document.getElementById('selectedSportsList');
   if (selectedSportsList) {
     selectedSportsList.innerHTML = '';
 
-    users.forEach((user) => {
-      const selectedSport = localStorage.getItem('selectedSport_' + user.username);
-      if (selectedSport) {
+    users.forEach((user) => { // Loop through the users
+      const selectedSport = localStorage.getItem('selectedSport_' + user.username); // Get the selected sport for the user
+      const selectedOption = localStorage.getItem('selectedOption_' + user.username);
+
+      if (selectedSport && selectedOption) { // If the user has a selected sport and option
         const listItem = document.createElement('li');
-        listItem.textContent = user.username + ': ' + selectedSport;
+        listItem.textContent = user.username + ': ' + selectedSport + ' - ' + selectedOption; // Create a list item with the username, selected sport and selected option
         listItem.setAttribute('data-username', user.username);
 
-        listItem.addEventListener('click', (event) => {
-          const username = event.target.getAttribute('data-username');
-          const dob = localStorage.getItem('dob_' + username.toLowerCase());
-          const grade = localStorage.getItem('grade_' + username.toLowerCase());
-
-          if (dob && grade) {
-            alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade);
-          } else {
-            alert('Date of Birth or Grade information not available for this user.');
-          }
-        });
+        if (getLoggedInUsername() === 'admin') {
+          listItem.addEventListener('click', onItemClick); // Add a click event for admin users
+        }
 
         selectedSportsList.appendChild(listItem);
       }
@@ -203,153 +225,176 @@ function updateAdminSelectedSportsList() {
   }
 }
 
-function initializePage() {
-  displayLoggedInUsername();
-  displaySelectedSport();
-  populateSelectedSportsList();
+// Function to initialize the page and display relevant content for the logged-in user
+function initializePage() { // Function to initialize the page
+  displayLoggedInUsername(); // Display the username of the logged-in user
+  displaySelectedSport(); // Display the selected sport for the logged-in user
+  populateSelectedSportsList(); // Populate the list of selected sports for non-admin users
 
-  const loggedInUsername = getLoggedInUsername().toLowerCase();
-  const isAdmin = loggedInUsername === 'admin';
-  const adminSection = document.getElementById('adminSection');
-  if (adminSection && getLoggedInUsername().toLowerCase() === 'admin') {
-    const sportListSection = document.getElementById('sportListSection');
-    const sportOptionsContainer = document.getElementById('sportOptionsContainer');
-    sportListSection.style.display = 'none';
-    sportOptionsContainer.style.display = 'none';
+  const loggedInUsername = getLoggedInUsername().toLowerCase(); // Get the username of the logged-in user
+  const isAdmin = loggedInUsername === 'admin'; // Check if the logged-in user is an admin
+  const adminSection = document.getElementById('adminSection'); // Get the admin section
+  const sportListSection = document.getElementById('sportListSection'); // Get the sport list section
+
+  if (adminSection) { // Display the admin section for admin users
+    adminSection.style.display = isAdmin ? 'block' : 'none'; //
   }
 
-  const sportListSection = document.getElementById('sportListSection');
-  const sportListItems = document.querySelectorAll('#sportList li');
-
-  if (adminSection) {
-    adminSection.style.display = isAdmin ? 'block' : 'none';
+  if (sportListSection) { 
+    sportListSection.style.display = isAdmin ? 'none' : 'block'; // Display the sport list section for non-admin users
   }
 
-  if (sportListSection) {
-    sportListSection.style.display = isAdmin ? 'none' : 'block';
+  if (adminSelectedSportsSection) { 
+    adminSelectedSportsSection.style.display = isAdmin ? 'block' : 'none'; // Display the selected sports section for admin users
   }
 
-  if (isAdmin) {
-    sportListItems.forEach((item) => {
-      item.style.display = 'none';
+  const sportListItems = document.querySelectorAll('#sportList li'); // Get the list of sport list items
+  sportListItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      selectEvent(item.textContent); // Update the selected sport
+      if (!isAdmin) { // Update the dropdown options for non-admin users 
+        populateSportOptionsDropdown(item.textContent); // Update the dropdown options for non-admin users
+      }
     });
+  });
+
+  if (!isAdmin && sportOptionsContainer) { // Display the dropdown options for non-admin users
+    const sportListItems = document.querySelectorAll('#sportList li'); // Get the list of sport list items
+    const firstSport = sportListItems[0].textContent; // Get the first sport in the list
+    populateSportOptionsDropdown(firstSport); // Populate the dropdown options for the first sport in the list
+  } else if (sportOptionsContainer) {  // Hide the dropdown options for admin users
+    sportOptionsContainer.innerHTML = ''; // Clear the dropdown options
   }
 }
 
-window.addEventListener('load', initializePage);
+// Initialize the page when the window loads
+window.addEventListener('load', () => { // When the page loads
+  initializePage(); // Initialize the page
+  initializeProfilePage(); // Initialize the profile page
+  updateTimeDate(); // Update the time and date
+ 
+  // Display selected options for the logged-in user in admin section on page load
+  if (getLoggedInUsername().toLowerCase() === 'admin') {
+    updateAdminSelectedSportsList(); // Update the list of selected sports in the admin section
+    createAdminButton(); // Add the admin button
+  }
+});
 
-function saveProfile(event) {
-  event.preventDefault();
-  const dob = document.getElementById('dob').value;
-  const grade = document.getElementById('grade').value;
-  const username = getLoggedInUsername();
+function saveProfile(event) { // Function to save the user profile
+  event.preventDefault(); // Prevent the default form submission behaviour
+  const dob = document.getElementById('dob').value; // Get the date of birth from the form
+  const grade = document.getElementById('grade').value; // Get the grade from the form
+  const username = getLoggedInUsername(); // Get the logged-in username
 
-  localStorage.setItem('dob_' + username.toLowerCase(), dob);
-  localStorage.setItem('grade_' + username.toLowerCase(), grade);
+  localStorage.setItem('dob_' + username.toLowerCase(), dob); // Store the date of birth in local storage
+  localStorage.setItem('grade_' + username.toLowerCase(), grade); // Store the grade in local storage
 
-  alert('Profile saved successfully!');
+  alert('Profile saved successfully!'); // Display an alert to the user
 }
 
 function populateProfileForm() {
-  const dob = localStorage.getItem('dob_' + getLoggedInUsername().toLowerCase());
-  const grade = localStorage.getItem('grade_' + getLoggedInUsername().toLowerCase());
+  const dob = localStorage.getItem('dob_' + getLoggedInUsername().toLowerCase()); // Get the date of birth from local storage
+  const grade = localStorage.getItem('grade_' + getLoggedInUsername().toLowerCase());   // Get the grade from local storage
 
-  const dobField = document.getElementById('dob');
-  const gradeField = document.getElementById('grade');
+  const dobField = document.getElementById('dob'); // Get the date of birth field
+  const gradeField = document.getElementById('grade'); // Get the grade field
 
-  if (dob && grade) {
-    dobField.value = dob;
-    gradeField.value = grade;
+  if (dob && grade) { // If the date of birth and grade are available
+    dobField.value = dob; // Set the date of birth field value
+    gradeField.value = grade; // Set the grade field value
   }
 }
 
+// Function to display the user profile page and populate the form with saved profile data
 function initializeProfilePage() {
   populateProfileForm();
 }
-
+// Initialize the user profile page when the window loads
 window.addEventListener('load', initializeProfilePage);
-
+// Function to change the profile picture by clicking on the profile picture element
 function changeProfilePicture() {
   const profilePictureInput = document.getElementById('profilePictureInput');
   profilePictureInput.click();
 }
+// Function to display the selected profile picture
+function displaySelectedProfilePicture(event) { 
+  const selectedFile = event.target.files[0]; // Get the selected file from the persons files
+  const profilePicture = document.getElementById('profilePicture'); // Get the profile picture element
 
-function displaySelectedProfilePicture(event) {
-  const selectedFile = event.target.files[0];
-  const profilePicture = document.getElementById('profilePicture');
-
-  if (selectedFile) {
+  if (selectedFile) { 
     const reader = new FileReader();
 
     reader.onload = function (event) {
       profilePicture.src = event.target.result;
     };
 
-    reader.readAsDataURL(selectedFile);
+    reader.readAsDataURL(selectedFile); // Convert the selected file to a data URL
   }
 }
-
-function displayTimeDate() {
+// Function to display the current time and date on the page
+function displayTimeDate() { // Function to display the current time and date on the page
   const timeDateElement = document.getElementById('timeDate');
   if (timeDateElement) {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-    const timeDateStr = now.toLocaleString(undefined, options);
+    const timeDateStr = now.toLocaleString(undefined, options); // Get the current time and date as a string
     timeDateElement.textContent = timeDateStr;
   }
 }
 
+// Update the time and date every second
 function updateTimeDate() {
   setInterval(displayTimeDate, 1000);
 }
 
+// Initialize the time and date when the window loads
 window.addEventListener('load', updateTimeDate);
 
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-  loginForm.addEventListener('submit', validateForm);
+
+// Add the login form submit event listener
+const loginForm = document.getElementById('loginForm'); // Get the login form
+if (loginForm) { // Check if the login form is available
+  loginForm.addEventListener('submit', validateForm); // Add the submit event listener
 }
 
-const saveProfileButton = document.getElementById('saveProfileButton');
-if (saveProfileButton) {
-  saveProfileButton.addEventListener('click', saveProfile);
+const saveProfileButton = document.getElementById('saveProfileButton'); // Get the save profile button
+if (saveProfileButton) { // Check if the save profile button is available
+  saveProfileButton.addEventListener('click', saveProfile); // Add a click event listener to the save profile button
 }
 
-function onItemClick(event) {
-  const username = event.target.getAttribute('data-username');
-  const dob = localStorage.getItem('dob_' + username.toLowerCase());
-  const grade = localStorage.getItem('grade_' + username.toLowerCase());
+function onItemClick(event) { // Function to display the user profile information when the admin clicks on a user
+  const username = event.target.getAttribute('data-username'); // Get the username from the list item 
+  const dob = localStorage.getItem('dob_' + username.toLowerCase()); // Get the date of birth from local storage
+  const grade = localStorage.getItem('grade_' + username.toLowerCase()); // Get the grade from local storage
 
-  if (dob && grade) {
-    alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade);
-  } else {
-    alert('Date of Birth or Grade information not available for this user.');
+  if (dob && grade) { // Check if the date of birth and grade are available
+    alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade); // Display the user profile information
+  } else { // If the date of birth or grade is not available
+    alert('Date of Birth or Grade information not available for this user.'); // Display an error message
   }
-}
+} 
 
-function createAdminButton() {
-  const adminSection = document.getElementById('adminSection');
-  if (adminSection) {
-    const button = document.createElement('button');
-    button.textContent = 'Go to Admin Page';
-    button.addEventListener('click', () => {
-      window.location.href = 'admin_page.html'; // Replace 'admin_page.html' with the path of your desired admin page
+function createAdminButton() { // Function to create the admin button
+  const adminSection = document.getElementById('adminSection'); // Get the admin section element
+  if (adminSection) { // Check if the admin section exists
+    const button = document.createElement('button'); // Create a button element
+    button.textContent = 'Go to Admin Page'; // Set the button text
+    button.addEventListener('click', () => { // Add a click event listener
+      window.location.href = 'admin_page.html'; // Redirect to admin page
     });
 
     adminSection.appendChild(button);
   }
 }
 
-window.addEventListener('load', () => {
-  initializePage();
-  initializeProfilePage();
-  updateTimeDate();
-
-  // ... (your existing code)
+window.addEventListener('load', () => { // Add the event listener when the window loads
+  initializePage(); // Initialize the page
+  initializeProfilePage();  // Initialize the profile page
+  updateTimeDate(); // Initialize the time and date
 
   // Display selected option for the logged-in user in admin section on page load
-  if (getLoggedInUsername().toLowerCase() === 'admin') {
-    updateAdminSelectedSportsList();
+  if (getLoggedInUsername().toLowerCase() === 'admin') { // Check if the logged-in user is admin
+    updateAdminSelectedSportsList(); // Update the selected sports list
     createAdminButton(); // Add the button
   }
 });
