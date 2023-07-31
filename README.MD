@@ -1,7 +1,5 @@
 # School Of Now ICT Assessment (Software Design & Development) Task - Year 11 - 2023 
 
-[![GitHub Issues](https://github.com/ScytheDEM/AthleticsMarshallingPage/issues)
-
 ## Description
 
 This is my Software Design & Development Assessment Task. Included in this upload is all the CSS, HTML and JS files for the task. There are a couple of things you're going to need to install first. 
@@ -32,13 +30,25 @@ $ cd AthleticsMarshallingPage
 $ npm install  # or any other installation command if applicable
 ```
 
-## Usage
+## Application of the problem:
+
+The problem is to develop an app that allows students to self-enroll in sports events while ensuring that they can only enroll *themselves*. Marshals should have the ability to enroll students in events, view the entrants in any event, and see the number of events a student is enrolled in. 
 
 
-## Features
+## Analysis & Problem:
 
+User Roles:
 
-## Contributing
+- Students: Can self-enroll in sports events.
+- Marshals: Can enroll students in events, view entrants, and see the number of events a student is enrolled in.
+
+Event Enrollment:
+
+Students can only enroll themselves in an event.
+
+When creating this website, i addressed the main consern with apps that already have this functionality; the efficency of the application and the way that participants interact with it. When creating the website, i made sure to make elements that are easy for the users (and admins!) to use. The app has a modern design which is both intutative with buttons that are understandable, allowing the user to be able to *know* what they're interacting with. 
+
+p.s: it's also mobile friendly 
 
 
 ## License
@@ -51,4 +61,3 @@ If users need help or have any questions, contact me here:
 
 - Issue Tracker: [Link to GitHub issues](https://github.com/ScytheDEM/AthleticsMarshallingPage/issues)
 - Email: alonsdale1@parrastu.catholic.edu.au OR aliclonsdale@gmail.com
-- Website:  (ill add later lol)
