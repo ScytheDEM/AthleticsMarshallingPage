@@ -17,7 +17,7 @@ You can pull (OR) Download the files like usual.
 Visual Studio Code: (This is the most reliable development tool)
 ## Windows: https://code.visualstudio.com/docs/?dv=win
 ## Mac: https://code.visualstudio.com/docs/?dv=osx
-## (For the weird people) Linux (deb): https://code.visualstudio.com/docs/?dv=linux64_deb
+## (For normal people) Linux (deb): https://code.visualstudio.com/docs/?dv=linux64_deb
 
 Plugins for visual studio:
 Live Server: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
@@ -29,6 +29,15 @@ $ git clone https://github.com/ScytheDEM/AthleticsMarshallingPage
 $ cd AthleticsMarshallingPage
 $ npm install  # or any other installation command if applicable
 ```
+
+## Login
+### Student View
+User: James
+Pass: 123
+
+### Admin View
+User: admin
+Pass: admin
 
 ## Application of the problem:
 
