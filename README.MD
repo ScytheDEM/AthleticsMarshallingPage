@@ -55,6 +55,12 @@ p.s: it's also mobile friendly
 
 Feel free to copy, don't plagorise though. 
 
+Sources USED:
+- GitHub CoPilot
+- ChatGPT
+- Google Bard
+- CSS Website design fluid animations
+
 ## Support
 
 If users need help or have any questions, contact me here:
