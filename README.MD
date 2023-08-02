@@ -4,6 +4,9 @@
 
 This is my Software Design & Development Assessment Task. Included in this upload is all the CSS, HTML and JS files for the task. There are a couple of things you're going to need to install first. (Make sure to open the 'homepage.html' file FIRST. 
 
+The comments on the code may seem excessive but i purposly wrote them like that so people can follow it along like an English sentence. 
+
+
 ## What you need to know:
 
 1. My Computer browser zoom is set to 90%, it should work on 100% but if it doesn't, click Ctrl (+) - to zoom out, or on Mac, CMD (+) -
