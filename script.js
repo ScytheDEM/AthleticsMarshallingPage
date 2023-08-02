@@ -29,7 +29,7 @@ if (loggedInUsername === 'admin' && sportOptionsContainer) {
 
   if (sportOptionsContainer) { // If the sport options container exists
     const optionsList = document.createElement('ul'); // Create a list to hold the options
-    sportsOptions[sport].forEach((option) => { // Loop through the options for the selected sport
+    sportsOptions[selectedSport].forEach((option) => { // Loop through the options for the selected sport
       const listItem = document.createElement('li');
       listItem.textContent = option;
       optionsList.appendChild(listItem);
@@ -47,9 +47,11 @@ if (loggedInUsername === 'admin' && sportOptionsContainer) {
 
 // Function to display the selected option for the logged-in user
 function displaySelectedSportOptions() {
-  const sportOptionsSelect = document.getElementById('sportOptionsSelect'); // Get the sport options select
-  const selectedSport = sportOptionsSelect.value;
-  displaySportOptions(selectedSport); // Display the options for the selected sport
+  const sportOptionsSelect = document.getElementById('sportOptionsSelect'); // Get the sport options select element
+  if (sportOptionsSelect) {
+    const selectedSport = sportOptionsSelect.value;
+    displaySportOptions(selectedSport); // Display the options for the selected sport
+  }
 }
 
 const sportsOptions = {
@@ -75,17 +77,22 @@ window.addEventListener('load', () => { // When the page loads
   initializeProfilePage(); // Initialize the profile page
   updateTimeDate(); // Update the time and date
 
-  const sportListItems = document.querySelectorAll('#sportList li'); // Get the list items in the sport list
-  sportListItems.forEach((item) => { // Loop through the list items
-    item.addEventListener('click', () => { // Add a click event listener to each list item
-      selectEvent(item.textContent); // Call the selectEvent function, passing in the text content of the list item
-    });
+const sportListItems = document.querySelectorAll('#sportList li'); // Get the list of sport list items
+sportListItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    selectEvent(item.textContent); // Update the selected sport
+    if (!isAdmin) { // Update the dropdown options for non-admin users 
+      populateSportOptionsDropdown(item.textContent); // Update the dropdown options for non-admin users
+    }
   });
+});
 
   // Initialize the sport options dropdown with the first sport in the list
   const firstSport = sportListItems[0].textContent;
   populateSportOptionsDropdown(firstSport);
 });
+
+
 
 function validateForm(event) { // Function to validate the login form
   event.preventDefault();
@@ -164,27 +171,27 @@ function selectEvent(sport) {
 }
 
 // Function to populate the list of selected sports for non-admin users
-function populateSelectedSportsList() {
-  const selectedSportsList = document.getElementById('selectedSportsList');
+function populateSelectedSportsList() { // Function to populate the list of selected sports for non-admin users
+  const selectedSportsList = document.getElementById('selectedSportsList'); // Get the selected sports list
   if (selectedSportsList) {
     selectedSportsList.innerHTML = '';
     users.forEach((user) => {
-      const selectedSport = localStorage.getItem('selectedSport_' + user.username);
+      const selectedSport = localStorage.getItem('selectedSport_' + user.username); // Get the selected sport for the user
       if (selectedSport) {
-        const listItem = document.createElement('li');
-        listItem.textContent = user.username + ': ' + selectedSport;
+        const listItem = document.createElement('li'); // Create a list item
+        listItem.textContent = user.username + ': ' + selectedSport; // Set the text content of the list item to the username and selected sport
         listItem.setAttribute('data-username', user.username);
 
         if (getLoggedInUsername() === 'admin') {
           listItem.addEventListener('click', (event) => {
-            const username = event.target.getAttribute('data-username');
-            const dob = localStorage.getItem('dob_' + username.toLowerCase());
-            const grade = localStorage.getItem('grade_' + username.toLowerCase());
+            const username = event.target.getAttribute('data-username'); // Get the username from the list item
+            const dob = localStorage.getItem('dob_' + username.toLowerCase()); // Get the date of birth for the user
+            const grade = localStorage.getItem('grade_' + username.toLowerCase()); // Get the grade for the user
 
-            if (dob && grade) {
-              alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade);
+            if (dob && grade) { // this is a bit formatted weird, let me explain: the date of birth is also checked when the sport is saved and when you click it, it also validates. 
+              alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade); // Display the username, date of birth, and grade for the user
             } else {
-              alert('Date of Birth or Grade information not available for this user.');
+              alert('This event has now been approved!'); // Display a message to indicate that the event has been approved
             }
           });
         }
@@ -206,24 +213,21 @@ function updateAdminSelectedSportsList() {
   if (selectedSportsList) {
     selectedSportsList.innerHTML = '';
 
-    users.forEach((user) => { // Loop through the users
-      const selectedSport = localStorage.getItem('selectedSport_' + user.username); // Get the selected sport for the user
+    users.forEach((user) => {
+      const selectedSport = localStorage.getItem('selectedSport_' + user.username);
       const selectedOption = localStorage.getItem('selectedOption_' + user.username);
 
-      if (selectedSport && selectedOption) { // If the user has a selected sport and option
+      if (selectedSport && selectedOption) {
         const listItem = document.createElement('li');
-        listItem.textContent = user.username + ': ' + selectedSport + ' - ' + selectedOption; // Create a list item with the username, selected sport and selected option
+        listItem.textContent = user.username + ': ' + selectedSport + ' - ' + selectedOption;
         listItem.setAttribute('data-username', user.username);
-
-        if (getLoggedInUsername() === 'admin') {
-          listItem.addEventListener('click', onItemClick); // Add a click event for admin users
-        }
-
+        listItem.addEventListener('click', onItemClick);
         selectedSportsList.appendChild(listItem);
       }
     });
   }
 }
+
 
 // Function to initialize the page and display relevant content for the logged-in user
 function initializePage() { // Function to initialize the page
@@ -231,22 +235,40 @@ function initializePage() { // Function to initialize the page
   displaySelectedSport(); // Display the selected sport for the logged-in user
   populateSelectedSportsList(); // Populate the list of selected sports for non-admin users
 
+  
+  // Remove the "Go to Admin Page" button
+  const adminButton = document.getElementById('goToAdminPageButton');
+  if (adminButton) {
+    adminButton.style.display = 'none';
+  }
+
+  // Remove the "Clear" button
+  const clearSelectedSportButton = document.getElementById('clearSelectedSportButton');
+  if (clearSelectedSportButton) {
+    clearSelectedSportButton.style.display = 'none';
+  }
+  
   const loggedInUsername = getLoggedInUsername().toLowerCase(); // Get the username of the logged-in user
   const isAdmin = loggedInUsername === 'admin'; // Check if the logged-in user is an admin
   const adminSection = document.getElementById('adminSection'); // Get the admin section
   const sportListSection = document.getElementById('sportListSection'); // Get the sport list section
+  
+  if (adminButton) {
+    adminButton.style.display = isAdmin ? 'block' : 'none';
+  }
+
+  if (clearSelectedSportButton) {
+    clearSelectedSportButton.style.display = isAdmin ? 'block' : 'none';
+  }
 
   if (adminSection) { // Display the admin section for admin users
-    adminSection.style.display = isAdmin ? 'block' : 'none'; //
+    adminSection.style.display = isAdmin ? 'block' : 'none'; 
   }
 
   if (sportListSection) { 
     sportListSection.style.display = isAdmin ? 'none' : 'block'; // Display the sport list section for non-admin users
   }
 
-  if (adminSelectedSportsSection) { 
-    adminSelectedSportsSection.style.display = isAdmin ? 'block' : 'none'; // Display the selected sports section for admin users
-  }
 
   const sportListItems = document.querySelectorAll('#sportList li'); // Get the list of sport list items
   sportListItems.forEach((item) => {
@@ -267,16 +289,40 @@ function initializePage() { // Function to initialize the page
   }
 }
 
-// Initialize the page when the window loads
-window.addEventListener('load', () => { // When the page loads
+function hideAdminWelcomeText() {
+  const loggedInUsername = getLoggedInUsername().toLowerCase(); // Get the username of the logged-in user
+  const isAdmin = loggedInUsername === 'admin'; // Check if the logged-in user is an admin
+  const adminWelcomeText = document.getElementById('adminWelcomeText'); // Get the admin welcome text element
+
+  if (isAdmin && adminWelcomeText) {
+    adminWelcomeText.style.display = 'none'; // Hide the welcome text for admin users
+  }
+}
+
+window.addEventListener('load', () => {
+  hideAdminWelcomeText(); // Hide the admin welcome text on page load
   initializePage(); // Initialize the page
   initializeProfilePage(); // Initialize the profile page
   updateTimeDate(); // Update the time and date
- 
-  // Display selected options for the logged-in user in admin section on page load
+
+  // Display selected option for the logged-in user in admin section on page load
   if (getLoggedInUsername().toLowerCase() === 'admin') {
-    updateAdminSelectedSportsList(); // Update the list of selected sports in the admin section
-    createAdminButton(); // Add the admin button
+    updateAdminSelectedSportsList();
+    createAdminButton();
+  }
+
+  const adminButton = document.getElementById('goToAdminPageButton'); // Change the id to "GoToAdminPageButton"
+  if (adminButton){
+
+    adminButton.addEventListener('click', () => {
+      window.location.href = 'admin_page.html'; // Redirect to admin page
+    });
+  }
+
+  // Add event listener for the "Clear" button
+  const clearSelectedSportButton = document.getElementById('clearSelectedSportButton');
+  if (clearSelectedSportButton) {
+    clearSelectedSportButton.addEventListener('click', clearSelectedSport);
   }
 });
 
@@ -370,7 +416,7 @@ function onItemClick(event) { // Function to display the user profile informatio
   if (dob && grade) { // Check if the date of birth and grade are available
     alert('Username: ' + username + '\nDate of Birth: ' + dob + '\nGrade: ' + grade); // Display the user profile information
   } else { // If the date of birth or grade is not available
-    alert('Date of Birth or Grade information not available for this user.'); // Display an error message
+    alert('This event has been now approved.'); // Display an alert to the user
   }
 } 
 
@@ -383,18 +429,15 @@ function createAdminButton() { // Function to create the admin button
       window.location.href = 'admin_page.html'; // Redirect to admin page
     });
 
-    adminSection.appendChild(button);
+    // adminSection.appendChild(button);
   }
 }
 
-window.addEventListener('load', () => { // Add the event listener when the window loads
-  initializePage(); // Initialize the page
-  initializeProfilePage();  // Initialize the profile page
-  updateTimeDate(); // Initialize the time and date
-
-  // Display selected option for the logged-in user in admin section on page load
-  if (getLoggedInUsername().toLowerCase() === 'admin') { // Check if the logged-in user is admin
-    updateAdminSelectedSportsList(); // Update the selected sports list
-    createAdminButton(); // Add the button
+function clearSelectedSport(event) {
+  const selectedSportItem = event.target.closest('li[data-username]'); // Find the closest parent <li> element with data-username attribute
+  if (selectedSportItem) {
+    const username = selectedSportItem.getAttribute('data-username');
+    localStorage.removeItem('selectedSport_' + username);
+    updateAdminSelectedSportsList();
   }
-});
+}

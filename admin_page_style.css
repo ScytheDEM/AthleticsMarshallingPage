@@ -329,3 +329,35 @@ body {
     height: 50vh;
   }
   
+  #goBackButton {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #goBackButton:hover {
+    background-color: #3da1e1;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Styles for the arrow icon */
+  #goBackButton svg {
+    width: 24px;
+    height: 24px;
+  }

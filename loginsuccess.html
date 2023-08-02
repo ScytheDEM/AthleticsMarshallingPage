@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="login_success_style.css" />
   </head>
   <body>
+    <!-- <button onclick="goToAdminPage()">Go to Admin Page</button> -->
     <div class="container">
       <div class="header">
         <div class="age-bracket-section" id="ageBracketSection">
@@ -57,6 +58,12 @@
         <ul id="selectedSportsList" class="selected-sports-list">
           <!-- List items will be dynamically added by JavaScript -->
         </ul>
+        <button id="goToAdminPageButton" style="display: none">
+          Go to Admin Page
+        </button>
+        <button id="clearSelectedSportButton" style="display: none">
+          Clear Selected Sport
+        </button>
         <div class="time-date" id="timeDate"></div>
       </div>
     </div>

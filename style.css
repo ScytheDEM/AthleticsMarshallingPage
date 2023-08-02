@@ -352,3 +352,98 @@ h1 {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
 }
+
+
+/* Style for the admin button */
+.admin-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 20px;
+}
+
+/* Style for the admin button on hover */
+.admin-button:hover {
+  background-color: #3da1e1;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Center the button horizontally */
+#goToAdminPage {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Apply the same styles as other buttons */
+#goToAdminPage {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#goToAdminPage:hover {
+  background-color: #3da1e1;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.clear-button {
+  margin-left: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#goToAdminPageButton {
+  display: block;
+  margin: 0 auto;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px; /* Making the button rounded */
+  font-size: 16px;
+}
+
+#goToAdminPageButton:hover {
+  background-color: #45a049;
+}
+
+/* CSS Styles for the "Clear" button */
+#clearSelectedSportButton {
+  display: block;
+  margin: 0 auto;
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px; /* Making the button rounded */
+  font-size: 16px;
+}
+
+#clearSelectedSportButton:hover {
+  background-color: #d32f2f;
+}

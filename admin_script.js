@@ -33,9 +33,9 @@ const users = [
       const userSubSection = document.createElement('div'); 
       userSubSection.classList.add('user-subsection'); // Add a class to the subsection
       userSubSection.innerHTML = `
-        <h2>${selectedUser}'s Sport</h2> // Add the user's name to the subsection
+        <h2>${selectedUser}'s Sport</h2>
         <ul class="sports-list">
-          <li>${users.find((u) => u.username === selectedUser).selectedSport}</li> // Add the user's selected sport to the subsection
+          <li>${users.find((u) => u.username === selectedUser).selectedSport}</li> 
         </ul>
       `;
   
@@ -65,3 +65,13 @@ const users = [
     }
   });
   
+  // Function to navigate back to the previous page
+function goBack() {
+  window.history.back();
+}
+
+// Event listener for the goBackButton
+const goBackButton = document.getElementById('goBackButton');
+if (goBackButton) {
+  goBackButton.addEventListener('click', goBack);
+}
