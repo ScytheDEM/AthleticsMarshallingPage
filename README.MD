@@ -50,6 +50,9 @@ Live Server: https://marketplace.visualstudio.com/items?itemName=ritwickdey.Live
 
 To view the website; *Right Click* on the 'homepage.html' file then click 'Open With Live Server'
 
+
+
+OR IF YOU WANT TO DO IT THE DIFFICULT WAY (NOT NEEDED)
 ```bash
 $ git clone https://github.com/ScytheDEM/AthleticsMarshallingPage
 $ cd AthleticsMarshallingPage
