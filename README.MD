@@ -60,6 +60,9 @@ Sources USED:
 - ChatGPT
 - Google Bard
 - CSS Website design fluid animations
+- Mozila HTML
+- HTML GOOGLE FOURMS
+- Reddit
 
 ## Support
 
