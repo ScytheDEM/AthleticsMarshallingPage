@@ -12,19 +12,19 @@ const users = [
   ];
   
   // Function to get a random sport with a specific type from the available sports list
-  function getRandomSport(sportType) {
-    const sportsOptions = {
+  function getRandomSport(sportType) { // Function to get a random sport with a specific type from the available sports list
+    const sportsOptions = { // Object of sports with specific types
       Sprint: ['60 Meters', '100 Meters', '200 Meters', 'Baton 200 Meters'],
       Hurdles: ['110 meters hurdles', '400 meters hurdles', '60 meters hurdles (indoor)', '300 meters hurdles'],
       'Long Jump': ['Junior Long Jump', 'Masters Long Jump', 'Triple Jump', 'Standing'],
       'High Jump': ['Scissors Jump (or Straight Jump)', 'Straddle Jump', 'Rolls', 'Reverse Fosbury Flop']
     };
   
-    const randomIndex = Math.floor(Math.random() * sportsOptions[sportType].length);
-    return sportsOptions[sportType][randomIndex];
+    const randomIndex = Math.floor(Math.random() * sportsOptions[sportType].length); // Get a random index from the sports list
+    return sportsOptions[sportType][randomIndex]; // Return the random sport
   }
   
-  function displaySelectedUserSports(selectedUser) { //
+  function displaySelectedUserSports(selectedUser) { // Function to display the selected user's sports
     const userSection = document.getElementById('userSection');
     if (userSection) {
       userSection.innerHTML = ''; // Clear the existing content
@@ -39,39 +39,39 @@ const users = [
         </ul>
       `;
   
-      userSection.appendChild(userSubSection);
+      userSection.appendChild(userSubSection); // Append the subsection to the user section
     }
   }
   
-  function showUserSection() {
+  function showUserSection() { // Function to show the user section
     const ageBracketSelect = document.getElementById('ageBracket'); // Get the age bracket select element
     const selectedUser = ageBracketSelect.value;
   
     const userSection = document.getElementById('userSection'); // Get the user section element
     if (userSection) {
-      if (selectedUser !== 'default') {
-        userSection.style.display = 'block';
-        displaySelectedUserSports(selectedUser);
-      } else {
-        userSection.style.display = 'none';
+      if (selectedUser !== 'default') { // If the selected user is not the default option
+        userSection.style.display = 'block'; // Display the user section
+        displaySelectedUserSports(selectedUser); // Display the selected user's sports
+      } else { // If the selected user is the default option
+        userSection.style.display = 'none'; // Hide the user section
       }
     }
   }
   
   window.addEventListener('load', () => { // Add an event listener to the window object
-    const ageBracketSelect = document.getElementById('ageBracket');
-    if (ageBracketSelect) {
-      ageBracketSelect.addEventListener('change', showUserSection);
+    const ageBracketSelect = document.getElementById('ageBracket'); // Get the age bracket select element
+    if (ageBracketSelect) { // If the age bracket select element exists
+      ageBracketSelect.addEventListener('change', showUserSection); // Add an event listener to the age bracket select element
     }
   });
   
   // Function to navigate back to the previous page
-function goBack() {
-  window.history.back();
+function goBack() { // Function to navigate back to the previous page
+  window.history.back(); // Go back to the previous page
 }
 
 // Event listener for the goBackButton
-const goBackButton = document.getElementById('goBackButton');
-if (goBackButton) {
-  goBackButton.addEventListener('click', goBack);
+const goBackButton = document.getElementById('goBackButton'); // Get the goBackButton element
+if (goBackButton) { // If the goBackButton element exists
+  goBackButton.addEventListener('click', goBack); // Add an event listener to the goBackButton element
 }
