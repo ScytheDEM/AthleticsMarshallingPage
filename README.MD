@@ -2,7 +2,7 @@
 
 ## Description
 
-This is my Software Design & Development Assessment Task. Included in this upload is all the CSS, HTML and JS files for the task. There are a couple of things you're going to need to install first. 
+This is my Software Design & Development Assessment Task. Included in this upload is all the CSS, HTML and JS files for the task. There are a couple of things you're going to need to install first. (Make sure to open the 'homepage.html' file FIRST. 
 
 ## What you need to know:
 
@@ -37,7 +37,7 @@ This is my Software Design & Development Assessment Task. Included in this uploa
 
 ## Installation
 
-You can pull (OR) Download the files like usual. 
+You can pull (OR) Download the files like usual. Click the green button which says 'Code' then download it as a ZIP, then unzip the file and drag the file into a open Visual Studio Code window. 
 
 Visual Studio Code: (This is the most reliable development tool)
 ## Windows: https://code.visualstudio.com/docs/?dv=win
@@ -48,6 +48,7 @@ Plugins for visual studio:
 Live Server: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
 (This should just take you to the page and redirect you to VSCode (YOU MAY NEED TO RESTART VISUAL STUDIO!)
 
+To view the website; *Right Click* on the 'homepage.html' file then click 'Open With Live Server'
 
 ```bash
 $ git clone https://github.com/ScytheDEM/AthleticsMarshallingPage
