@@ -4,6 +4,31 @@
 
 This is my Software Design & Development Assessment Task. Included in this upload is all the CSS, HTML and JS files for the task. There are a couple of things you're going to need to install first. 
 
+## What you need to know:
+
+1. My Computer browser zoom is set to 90%, it should work on 100% but if it doesn't, click Ctrl (+) - to zoom out, or on Mac, CMD (+) -
+2. The User Names and the passwords of the people (ALL CASE SENSITIVE):
+
+# The admin account: 
+- Username: admin
+- Password: admin
+
+# The user accounts:
+- James
+- Kevin
+- Dale
+- Mark
+- Willow
+- Charli
+- Peter
+- Dominic
+- William
+
+# The user passwords:
+- All user account passwords are '123'
+
+
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -58,7 +83,6 @@ Feel free to copy, don't plagorise though.
 Sources USED:
 - GitHub CoPilot
 - ChatGPT
-- Google Bard
 - CSS Website design fluid animations
 - Mozila HTML
 - HTML GOOGLE FOURMS
